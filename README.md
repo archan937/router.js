@@ -14,13 +14,48 @@ Just include router.js:
 
 ## Usage
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+To define your routes you need to invoke either the `Router.add()` or even shorter `route()` function. The required arguments are pretty simple.
 
-### Contact me
+For every route you need to pass two arguments:
+
+1. the `hash` of the route
+2. the `callback function` that gets invoked after a route match
+
+```javascript
+route(
+  '< hash 1 >', function() {
+    // do something
+  },
+  '< hash 2 >', function() {
+    // do something
+  }
+);
+```
+
+Optionally, you can match params using either of the following formats:
+
+1. `:name` to match a segment within the hash delimited with slashes
+2. `*name` to match a segment NOT necessarily delimited with slashes
+
+Params will be available as arguments within the callback function.
+
+```javascript
+route(
+  'get/:id', function(id) {
+    // do something
+  }
+);
+```
+
+## Demo
+
+You can see `router.js` on the demo page <a href="https://archan937.github.io/router.js#demo">https://archan937.github.io/router.js#demo</a>.
+
+## Contact me
 
 For support, remarks and requests, please mail me at [pm_engel@icloud.com](mailto:pm_engel@icloud.com).
 
-### License
+## License
 
 Copyright (c) 2019 Paul Engel, released under the MIT license
 
