@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>router.js</title>
+    <link rel="stylesheet" href="./demo.css">
+    <script src="../src/router.js"></script>
+  </head>
+  <body>
+    <a href="https://github.com/archan937/router.js" class="github-corner">
+      <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+      </svg>
+    </a>
+    <div class="demo">
+      <h1>
+        router.js
+      </h1>
+      <hr>
+      <h2>
+        An easy to use Javascript library for <span>one-page routing</span>
+      </h2>
+      <h3>
+        <a href="#introduction" name="introduction">Introduction</a>
+      </h3>
+      <p>
+        To define your routes you need to invoke either the <span>Router.add()</span> or even shorter <span>route()</span> function.
+        The required arguments are pretty simple.
+      </p>
+      <p>
+        For every route you need to pass two arguments:
+        <ol>
+          <li>the <span>hash</span> of the route</li>
+          <li>the <span>callback function</span> that gets invoked after a route match</li>
+        </ol>
+      </p>
+      <pre>
+route(
+  '< hash 1 >', function() {
+    // do something
+  },
+  '< hash 2 >', function() {
+    // do something
+  }
+);</pre>
+      <p>
+        Optionally, you can match <span>params</span> using either of the following formats:
+        <ol>
+          <li><span>:name</span> to match a segment within the hash delimited with <span>slashes</span></li>
+          <li><span>*name</span> to match a segment <span>NOT</span> necessarily delimited with <span>slashes</span></li>
+        </ol>
+        Params will be available as arguments within the callback function.
+      </p>
+      <pre>
+route(
+  'get/:id', function(id) {
+    // do something
+  }
+);</pre>
+      <h3>
+        <a href="#setup" name="setup">Setup</a>
+      </h3>
+      <p>
+        These are the routes defined for this demo page.
+        <script>
+          var code = `
+var
+  output = document.getElementById('output'),
+  log = function(msg) {
+    var count = output.childNodes.length + 1;
+    output.innerHTML += '<div>' + count + '~> ' + msg + '</div>';
+    output.scrollTo(0, output.scrollHeight);
+  };
+
+route(
+  'about-me', function() {
+    log('About me');
+  },
+  'show/:id', function(id) {
+    log('Show ' + id);
+  },
+  'show/:id/details', function(id) {
+    log('Show ' + id + ' details');
+  },
+  'foo/:bar/:baz/qux', function(bar, baz) {
+    log('Foo ' + bar + ':' + baz + ' Qux');
+  },
+  'foo/*bar/baz', function(bar) {
+    log('Foo ' + bar + ' Baz');
+  },
+  'foo/*bar', function(bar) {
+    log('Foo ' + bar);
+  },
+  '*hash', function(hash) {
+    log('Not found: ' + hash);
+  }
+);`;
+          document.write('<pre>' + code.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</pre>');
+        </script>
+      </p>
+      <h3>
+        <a href="#demo" name="demo">Demo</a>
+      </h3>
+      <div style="width: 50%; float: left">
+        <h4>
+          > Links
+        </h4>
+        <ul>
+          <li><a href="#about-me">#about-me</a></li>
+          <li><a href="#show/1982">#show/1982</a></li>
+          <li><a href="#show/1947/details">#show/1947/details</a></li>
+          <li><a href="#foo/paul/engel/qux">#foo/paul/engel/qux</a></li>
+          <li><a href="#foo/router.js/is/so/cool/baz">#foo/router.js/is/so/cool/baz</a></li>
+          <li><a href="#foo/router.js/is/handy">#foo/router.js/is/handy</a></li>
+          <li><a href="#demo">#demo</a></li>
+          <li><a href="https://google.com#foo">https://google.com#foo</a></li>
+        </ul>
+      </div>
+      <div style="width: 50%; float: left">
+        <h4>
+          > Output
+        </h4>
+        <code id="output" style="height: 200px; overflow-y: scroll"></code>
+      </div>
+      <br style="clear: both">
+      <hr>
+      <br>
+      <p class="center">
+        <small>
+          The Javascript library <a href="https://github.com/archan937/router.js">router.js</a> is written by <span>Paul Engel</span>.
+        </small>
+      </p>
+    </div>
+    <script>
+      var
+        output = document.getElementById('output'),
+        log = function(msg) {
+          var count = output.childNodes.length + 1;
+          output.innerHTML += '<div>' + count + '~> ' + msg + '</div>';
+          output.scrollTo(0, output.scrollHeight);
+        };
+
+      route(
+        'about-me', function() {
+          log('About me');
+        },
+        'show/:id', function(id) {
+          log('Show ' + id);
+        },
+        'show/:id/details', function(id) {
+          log('Show ' + id + ' details');
+        },
+        'foo/:bar/:baz/qux', function(bar, baz) {
+          log('Foo ' + bar + ':' + baz + ' Qux');
+        },
+        'foo/*bar/baz', function(bar) {
+          log('Foo ' + bar + ' Baz');
+        },
+        'foo/*bar', function(bar) {
+          log('Foo ' + bar);
+        },
+        '*hash', function(hash) {
+          log('Not found: ' + hash);
+        }
+      );
+    </script>
+  </body>
+</html>
