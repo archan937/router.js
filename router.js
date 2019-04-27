@@ -1,13 +1,13 @@
 var
 
 // *
-// * router.js {version} (Uncompressed)
+// * router.js 0.1.0 (Uncompressed)
 // * An easy to use Javascript library for one-page routing.
 // *
-// * (c) {year} Paul Engel
+// * (c) 2019 Paul Engel
 // * router.js is licensed under MIT license
 // *
-// * $Date: {date} $
+// * $Date: 2019-04-27 18:23:42 +0100 (Sat, 27 April 2019) $
 // *
 
 Router = (function() {
