@@ -2,12 +2,12 @@ var
 
 // *
 // * router.js 0.1.0 (Uncompressed)
-// * An easy to use Javascript library for one-page routing.
+// * A Javascript library for single-page routing done easily.
 // *
 // * (c) 2019 Paul Engel
 // * router.js is licensed under MIT license
 // *
-// * $Date: 2019-04-27 18:23:42 +0100 (Sat, 27 April 2019) $
+// * $Date: 2019-04-28 02:53:14 +0100 (Sun, 28 April 2019) $
 // *
 
 Router = (function() {
@@ -18,13 +18,7 @@ Router = (function() {
 
   init = function() {
     document.addEventListener('click', intercept);
-    if ((document.readyState == 'interactive') || (document.readyState == 'complete')) {
-      load();
-    } else {
-      document.addEventListener('DOMContentLoaded', function() {
-        load();
-      });
-    }
+    load(window.location.href);
   },
 
   intercept = function(event) {
@@ -45,7 +39,7 @@ Router = (function() {
   },
 
   load = function(url) {
-    var match = matchURL(url || window.location.href);
+    var match = matchURL(url);
     match && setTimeout(match, 0);
     return !!match;
   },
@@ -106,7 +100,11 @@ Router = (function() {
     }
   };
 
-  init();
+  if ((document.readyState == 'interactive') || (document.readyState == 'complete')) {
+    init();
+  } else {
+    document.addEventListener('DOMContentLoaded', init);
+  }
 
   return {add: route};
 

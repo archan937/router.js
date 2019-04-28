@@ -20,17 +20,41 @@
       </h1>
       <hr>
       <h2>
-        An easy to use Javascript library for <span>one-page routing</span>
+        A Javascript library for <span>single-page routing</span> done easily
       </h2>
       <h3>
-        <a href="#introduction" name="introduction">Introduction</a>
+        <a href="#demo" name="demo">Demo</a>
+      </h3>
+      <div style="width: 50%; float: left">
+        <h4>
+          > Links
+        </h4>
+        <ul>
+          <li><a href="#about-me">#about-me</a></li>
+          <li><a href="#show/1982">#show/1982</a></li>
+          <li><a href="#show/1947/details">#show/1947/details</a></li>
+          <li><a href="#foo/paul/engel/qux">#foo/paul/engel/qux</a></li>
+          <li><a href="#foo/router.js/is/so/cool/baz">#foo/router.js/is/so/cool/baz</a></li>
+          <li><a href="#foo/router.js/is/handy">#foo/router.js/is/handy</a></li>
+          <li><a href="#demo">#demo</a></li>
+          <li><a href="https://google.com#foo">https://google.com#foo</a></li>
+        </ul>
+      </div>
+      <div style="width: 50%; float: left">
+        <h4>
+          > Output
+        </h4>
+        <code id="output" style="height: 200px; overflow-y: scroll"></code>
+      </div>
+      <h3 style="clear: both">
+        <a href="#explanation" name="explanation">Explanation</a>
       </h3>
       <p>
         To define your routes you need to invoke either the <span>Router.add()</span> or even shorter <span>route()</span> function.
         The required arguments are pretty simple.
       </p>
       <p>
-        For every route you need to pass two arguments:
+        For every route you need to pass a pair of two arguments:
         <ol>
           <li>the <span>hash</span> of the route</li>
           <li>the <span>callback function</span> that gets invoked after a route match</li>
@@ -98,73 +122,14 @@ route(
   }
 );`;
           document.write('<pre>' + code.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</pre>');
+          eval(code);
         </script>
       </p>
-      <h3>
-        <a href="#demo" name="demo">Demo</a>
-      </h3>
-      <div style="width: 50%; float: left">
-        <h4>
-          > Links
-        </h4>
-        <ul>
-          <li><a href="#about-me">#about-me</a></li>
-          <li><a href="#show/1982">#show/1982</a></li>
-          <li><a href="#show/1947/details">#show/1947/details</a></li>
-          <li><a href="#foo/paul/engel/qux">#foo/paul/engel/qux</a></li>
-          <li><a href="#foo/router.js/is/so/cool/baz">#foo/router.js/is/so/cool/baz</a></li>
-          <li><a href="#foo/router.js/is/handy">#foo/router.js/is/handy</a></li>
-          <li><a href="#demo">#demo</a></li>
-          <li><a href="https://google.com#foo">https://google.com#foo</a></li>
-        </ul>
-      </div>
-      <div style="width: 50%; float: left">
-        <h4>
-          > Output
-        </h4>
-        <code id="output" style="height: 200px; overflow-y: scroll"></code>
-      </div>
-      <br style="clear: both">
-      <hr>
-      <br>
       <p class="center">
         <small>
           The Javascript library <a href="https://github.com/archan937/router.js">router.js</a> is written by <span>Paul Engel</span>.
         </small>
       </p>
     </div>
-    <script>
-      var
-        output = document.getElementById('output'),
-        log = function(msg) {
-          var count = output.childNodes.length + 1;
-          output.innerHTML += '<div>' + count + '~> ' + msg + '</div>';
-          output.scrollTo(0, output.scrollHeight);
-        };
-
-      route(
-        'about-me', function() {
-          log('About me');
-        },
-        'show/:id', function(id) {
-          log('Show ' + id);
-        },
-        'show/:id/details', function(id) {
-          log('Show ' + id + ' details');
-        },
-        'foo/:bar/:baz/qux', function(bar, baz) {
-          log('Foo ' + bar + ':' + baz + ' Qux');
-        },
-        'foo/*bar/baz', function(bar) {
-          log('Foo ' + bar + ' Baz');
-        },
-        'foo/*bar', function(bar) {
-          log('Foo ' + bar);
-        },
-        '*hash', function(hash) {
-          log('Not found: ' + hash);
-        }
-      );
-    </script>
   </body>
 </html>
