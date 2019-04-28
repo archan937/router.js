@@ -1,6 +1,6 @@
 # router.js
 
-An easy to use Javascript library for "one-page routing".
+A Javascript library for `single-page routing` done easily.
 
 ## Installation
 
@@ -12,11 +12,15 @@ Just include router.js:
 
 **Note**: include `router.min.js` for the minified router.js library
 
+## Demo
+
+You can see `router.js` on the demo page <a href="https://archan937.github.io/router.js#demo">https://archan937.github.io/router.js#demo</a>.
+
 ## Usage
 
 To define your routes you need to invoke either the `Router.add()` or even shorter `route()` function. The required arguments are pretty simple.
 
-For every route you need to pass two arguments:
+For every route you need to pass a pair of two arguments:
 
 1. the `hash` of the route
 2. the `callback function` that gets invoked after a route match
@@ -46,10 +50,6 @@ route(
   }
 );
 ```
-
-## Demo
-
-You can see `router.js` on the demo page <a href="https://archan937.github.io/router.js#demo">https://archan937.github.io/router.js#demo</a>.
 
 ## Contact me
 
